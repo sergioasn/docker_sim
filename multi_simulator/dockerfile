@@ -5,15 +5,14 @@ ENV HOME /home
 WORKDIR /home
 
 COPY ./scripts/utils.sh .
-COPY ./scripts/icarus.sh .
-COPY ./scripts/tools.sh .
 COPY ./scripts/ghdl.sh .
+COPY ./scripts/verilator.sh .
+COPY ./scripts/tools.sh .
 
 RUN apt-get -qq update
 
 RUN chmod 777 *.sh
 RUN ./utils.sh
-RUN ./icarus.sh
-RUN ./tools.sh
 RUN ./ghdl.sh
-update-alternatives --install /usr/bin/python python /usr/bin/python3.6 10
+RUN ./verilator.sh
+RUN ./tools.sh
